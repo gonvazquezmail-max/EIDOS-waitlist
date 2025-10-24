@@ -23,8 +23,23 @@
         <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc5dmVPN8IarMsXPeRA8URYW4EDg_WF8_ykESVCmyqjRPxPjg/viewform?embedded=true" width="640" height="853" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
     </div>
 
+    <div id="chat-bubble" class="chat-closed">
+        <div id="chat-header" onclick="toggleChat()">
+            EIDOS Support
+            <span id="chat-toggle-icon">+</span>
+        </div>
+        <div id="chat-window">
+            <div id="chat-messages">
+                <div class="message agent">Welcome! I'm EIDOS, your support agent. How can I assist with your product or order?</div>
+            </div>
+            <div id="chat-input-area">
+                <input type="text" id="chat-input" placeholder="Ask a question..." onkeydown="if(event.key === 'Enter') sendMessage()">
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </div>
     <script src="https://unpkg.com/three@0.137.5/build/three.min.js"></script>
-    <script src="https://unpkg.com/three@0.137.5/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://unpkg.com.com/three@0.137.5/examples/js/controls/OrbitControls.js"></script>
     <script src="https://unpkg.com/three@0.137.5/examples/js/loaders/GLTFLoader.js"></script>
     <script src="script.js"></script>
 </body>
