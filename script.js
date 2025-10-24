@@ -2,7 +2,7 @@
 
 // *** 1. CHAT AGENT CONFIGURATION ***
 // ⚠️ REPLACE THIS WITH your NGROK URL ⚠️
-const API_BASE_URL = "http://127.0.0.1:5000"; 
+const API_BASE_URL = "https://laithly-ruddiest-ima.ngrok-free.dev"; 
 // In a production setup, this would be your deployed server URL (e.g., https://api.eidos.com)
 
 let conversationHistory = [];
@@ -209,3 +209,4 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     init();
 });
+
