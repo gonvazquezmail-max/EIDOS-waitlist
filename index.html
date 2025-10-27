@@ -14,17 +14,44 @@
             theme: {
                 extend: {
                     colors: {
-                        'eidos-primary': '#0D9488', /* Teal 600 - AI Agent */
-                        'eidos-light': '#14B8A6',  /* Teal 500 */
-                        'eidos-dark': '#0F766E',   /* Teal 700 */
                         'store-brand': '#3B82F6',  /* Blue 500 - Store Brand */
-                        'chat-user': '#3B82F6',    /* Blue 500 - User message color */
-                        'chat-agent-bg': '#F1F5F9', /* Light background for Agent */
+                        'eidos-light': '#14B8A6', /* Teal 500 for product buttons */
+                        'eidos-primary': '#0D9488', /* Teal 600 for product buttons */
+                        'eidos-dark': '#0F766E',   /* Teal 700 */
                     }
                 }
             }
         }
     </script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fb;
+        }
+
+        /* EIDOS Chat Variables (for styles.css) */
+        :root {
+            --primary-color: #f0f0f0;
+            --secondary-color: #88c0d0; /* Soft Blue-Green (Chat Header) */
+            --glass-bg: rgba(0, 0, 0, 0.1); /* Darker Glass background for agent message on light page */
+            --border-color: rgba(0, 0, 0, 0.15);
+            --text-color: #1F2937; /* Dark text on light page */
+        }
+        
+        /* Custom scrollbar for chat window (using Inter font's colors) */
+        .chat-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+        .chat-messages::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1; /* Gray 300 */
+            border-radius: 3px;
+        }
+        .chat-messages::-webkit-scrollbar-track {
+            background-color: #f1f5f9; /* Gray 100 */
+        }
+    </style>
 </head>
 <body class="antialiased">
 
@@ -162,13 +189,13 @@
 
     </div>
 
-    <div id="eidos-chat-bubble" class="chat-closed">
+    <div id="chat-bubble" class="chat-closed">
         <div id="chat-header" onclick="toggleChat()">
             EIDOS Support
             <span id="chat-toggle-icon">+</span>
         </div>
         <div id="chat-window">
-            <div id="chat-messages">
+            <div id="chat-messages" class="chat-content">
                 <div class="message agent">Welcome to Aura Desk Co.! I'm EIDOS, your personalized assistant. I can help you check **shipping on the AuraFocus Headphones**, find an item, or even recommend a desk setup. How can I assist you?</div>
             </div>
             <div id="chat-input-area">
