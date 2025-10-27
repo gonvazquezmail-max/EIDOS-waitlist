@@ -1,18 +1,19 @@
-// script.js (MODIFIED FOR CHAT AGENT INTEGRATION)
+// script.js (AI Agent Logic for E-Commerce Demo)
 
 // *** 1. CHAT AGENT CONFIGURATION ***
 // ⚠️ REPLACE THIS WITH your NGROK URL ⚠️
-const API_BASE_URL = "https://laithly-ruddiest-ima.ngrok-free.dev"; 
+const API_BASE_URL = "https://laithly-ruddiest-ima.ngrok-free.dev";
 // In a production setup, this would be your deployed server URL (e.g., https://api.eidos.com)
 
 let conversationHistory = [];
-const CUSTOMER_ID = "CUST-HICLV-001"; // Fixed ID for testing the 'Profit Priority' rule
+const CUSTOMER_ID = "CUST-AURA-002"; // Unique ID for E-Commerce demo customer
 
 
 // *** 2. CHAT AGENT FUNCTIONS ***
 
 function toggleChat() {
-    const chatBubble = document.getElementById('chat-bubble');
+    // MODIFIED: Reverted to original ID for the chat bubble container
+    const chatBubble = document.getElementById('chat-bubble'); 
     const toggleIcon = document.getElementById('chat-toggle-icon');
     
     if (chatBubble.classList.contains('chat-closed')) {
@@ -73,7 +74,7 @@ async function sendMessage() {
     } catch (error) {
         removeLoadingMessage(loadingId);
         console.error("API Fetch Error:", error);
-        addMessage("Connection error: Could not reach the AI Agent.", 'agent');
+        addMessage("Connection error: Could not reach the AI Agent. Check your NGROK URL.", 'agent');
     }
 }
 
@@ -82,7 +83,7 @@ function handleAgentResponse(response) {
     const action = response.autonomous_action;
     const aov = response.estimated_aov_increase_usd;
 
-    // Format the response based on the Agent's action
+    // Format the response based on the Agent's action (Sales driven)
     if (action === 'INITIATE_SALE' && aov > 0) {
         outputText += "\n\n--- Sales Opportunity ---";
         outputText += `\n**Action:** ${action}`;
@@ -90,7 +91,8 @@ function handleAgentResponse(response) {
         outputText += `\n**Price:** $${aov.toFixed(2)}`;
         outputText += `\n${response.persuasive_closing_line}`;
     } else {
-        outputText += `\n\n[Action: ${action}]`;
+        // Only display action if it's not a successful sales push, for diagnostic purposes
+        // outputText += `\n\n[Action: ${action}]`; 
     }
 
     addMessage(outputText, 'agent');
@@ -107,7 +109,7 @@ function addMessage(text, sender) {
     const messageDiv = document.createElement('div');
     messageDiv.classList.add('message', sender);
     
-    // Use innerHTML to handle simple markdown if needed
+    // Use innerHTML to handle simple markdown (bold/line breaks)
     messageDiv.innerHTML = text.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
     
     messagesDiv.appendChild(messageDiv);
@@ -116,7 +118,7 @@ function addMessage(text, sender) {
 
 function addLoadingMessage() {
     const id = Date.now();
-    addMessage(`<span id="loading-${id}">...Agent is thinking...</span>`, 'agent');
+    addMessage(`<span id="loading-${id}">...EIDOS is evaluating the query...</span>`, 'agent');
     return id;
 }
 
@@ -127,86 +129,8 @@ function removeLoadingMessage(id) {
     }
 }
 
+// *** 3. Initialize Chat Functions ***
 
-// *** 3. THREE.JS VISUAL LOGIC (Original Code) ***
-
-document.addEventListener('DOMContentLoaded', () => {
-    let scene, camera, renderer, icosahedron;
-
-    // Expose toggleChat globally since it's used in index.html onclick
-    window.toggleChat = toggleChat;
-    window.sendMessage = sendMessage;
-    
-    function init() {
-        const container = document.body;
-        scene = new THREE.Scene();
-        camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.z = 2.5;
-
-        renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(window.devicePixelRatio);
-        container.appendChild(renderer.domElement);
-
-        // Create a low-poly icosahedron for a sci-fi look
-        const geometry = new THREE.IcosahedronGeometry(1.5, 1);
-        const material = new THREE.MeshBasicMaterial({
-            color: 0x88c0d0, // Soft blue-green
-            wireframe: true,
-            transparent: true,
-            opacity: 0.3
-        });
-        icosahedron = new THREE.Mesh(geometry, material);
-        scene.add(icosahedron);
-
-        // Add a glowing effect
-        const glowMaterial = new THREE.MeshBasicMaterial({
-            color: 0x88c0d0,
-            transparent: true,
-            opacity: 0.2,
-            blending: THREE.AdditiveBlending
-        });
-        const glowIcosahedron = new THREE.Mesh(geometry, glowMaterial);
-        glowIcosahedron.scale.set(1.2, 1.2, 1.2);
-        scene.add(glowIcosahedron);
-
-        function animate() {
-            requestAnimationFrame(animate);
-            if (icosahedron) {
-                icosahedron.rotation.x += 0.002;
-                icosahedron.rotation.y += 0.003;
-                glowIcosahedron.rotation.x += 0.002;
-                glowIcosahedron.rotation.y += 0.003;
-
-                // Simple deformation effect
-                const time = Date.now() * 0.001;
-                const positions = icosahedron.geometry.attributes.position.array;
-                const glowPositions = glowIcosahedron.geometry.attributes.position.array;
-
-                for (let i = 0; i < positions.length; i += 3) {
-                    const p = new THREE.Vector3(positions[i], positions[i + 1], positions[i + 2]);
-                    const distance = p.length();
-                    const newY = positions[i+1] + Math.sin(distance * 5 + time) * 0.01; // Reduced deformation for stability
-                    
-                    positions[i+1] = newY;
-                    glowPositions[i+1] = newY;
-                }
-                icosahedron.geometry.attributes.position.needsUpdate = true;
-                glowIcosahedron.geometry.attributes.position.needsUpdate = true;
-            }
-            renderer.render(scene, camera);
-        }
-
-        function onWindowResize() {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        }
-
-        window.addEventListener('resize', onWindowResize, false);
-
-        animate();
-    }
-    init();
-});
-
+// Expose chat functions globally since they are used in index.html onclick
+window.toggleChat = toggleChat;
+window.sendMessage = sendMessage;
