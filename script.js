@@ -13,17 +13,17 @@ const CUSTOMER_ID = "CUST-NEW-002"; // Unique ID for E-Commerce demo customer
 
 function toggleChat() {
     // MODIFIED: Reverted to original ID for the chat bubble container
-    const chatBubble = document.getElementById('chat-bubble'); 
-    const toggleIcon = document.getElementById('chat-toggle-icon');
-    
+    const chatBubble = document.getElementById('chat-bubble');
+    // REMOVED: const toggleIcon = document.getElementById('chat-toggle-icon');
+
     if (chatBubble.classList.contains('chat-closed')) {
         chatBubble.classList.remove('chat-closed');
         chatBubble.classList.add('chat-open');
-        toggleIcon.textContent = 'x';
+        // FIX: Remove manual icon change, let CSS handle the display change
     } else {
         chatBubble.classList.remove('chat-open');
         chatBubble.classList.add('chat-closed');
-        toggleIcon.textContent = '+';
+        // FIX: Remove manual icon change, let CSS handle the display change
     }
 }
 
@@ -38,7 +38,7 @@ async function sendMessage() {
 
     // 2. Add to conversation history
     conversationHistory.push({ role: 'user', content: message });
-    
+
     // Simple loading indicator
     const loadingId = addLoadingMessage();
 
@@ -60,9 +60,9 @@ async function sendMessage() {
 
         // 4. Handle Agent Response
         const agentResponse = await response.json();
-        
+
         removeLoadingMessage(loadingId);
-        
+
         if (response.ok) {
             handleAgentResponse(agentResponse);
         } else {
@@ -96,10 +96,10 @@ function handleAgentResponse(response) {
     }
 
     addMessage(outputText, 'agent');
-    
+
     // 5. Update Conversation History (for context in next turn)
     conversationHistory.push({ role: 'assistant', content: response.support_answer });
-    
+
     // Scroll to the bottom
     document.getElementById('chat-messages').scrollTop = document.getElementById('chat-messages').scrollHeight;
 }
@@ -108,10 +108,10 @@ function addMessage(text, sender) {
     const messagesDiv = document.getElementById('chat-messages');
     const messageDiv = document.createElement('div');
     messageDiv.classList.add('message', sender);
-    
+
     // Use innerHTML to handle simple markdown (bold/line breaks)
     messageDiv.innerHTML = text.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-    
+
     messagesDiv.appendChild(messageDiv);
     messagesDiv.scrollTop = messagesDiv.scrollHeight;
 }
@@ -134,4 +134,3 @@ function removeLoadingMessage(id) {
 // Expose chat functions globally since they are used in index.html onclick
 window.toggleChat = toggleChat;
 window.sendMessage = sendMessage;
-
