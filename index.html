@@ -3,34 +3,173 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EIDOS Waitlist</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>Aura Desk Co. | Premium Home Office Goods</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
     <link rel="stylesheet" href="styles.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'eidos-primary': '#0D9488', /* Teal 600 - AI Agent */
+                        'eidos-light': '#14B8A6',  /* Teal 500 */
+                        'eidos-dark': '#0F766E',   /* Teal 700 */
+                        'store-brand': '#3B82F6',  /* Blue 500 - Store Brand */
+                        'chat-user': '#3B82F6',    /* Blue 500 - User message color */
+                        'chat-agent-bg': '#F1F5F9', /* Light background for Agent */
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body>
-    <canvas></canvas>
-    <div class="container">
-        <div class="logo-and-title">
-            <img src="eidos-logo.png" alt="EIDOS Logo">
-            <h1>EIDOS</h1>
-            <p>The AI Of Fitness</p>
-        </div>
+<body class="antialiased">
 
-        <p class="intro-text">The journey to your goals begins here. Powered by a truly ethical AI, EIDOS is your fitness AI companion. Secure your spot and be among the first to access it.</p>
+    <div id="app" class="min-h-screen flex flex-col">
 
-        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc5dmVPN8IarMsXPeRA8URYW4EDg_WF8_ykESVCmyqjRPxPjg/viewform?embedded=true" width="640" height="853" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+        <header class="bg-white shadow-md sticky top-0 z-10">
+            <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+                
+                <a href="#" class="flex items-center space-x-2 text-2xl font-bold text-gray-900">
+                    <img src="logo.png" alt="Aura Desk Co. Logo" class="h-8 w-8">
+                    <span class="text-store-brand">Aura</span>
+                    <span class="text-gray-600">Desk Co.</span>
+                </a>
+                
+                <div class="hidden md:flex space-x-8 text-gray-600 font-medium">
+                    <a href="#" class="hover:text-store-brand transition duration-150">Desk Essentials</a>
+                    <a href="#" class="hover:text-store-brand transition duration-150">Organizers</a>
+                    <a href="#" class="hover:text-store-brand transition duration-150">About</a>
+                    <a href="#" class="hover:text-store-brand transition duration-150">Contact</a>
+                </div>
+                <button class="text-gray-600 hover:text-store-brand transition duration-150">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                </button>
+            </nav>
+        </header>
+
+        <section class="bg-white py-16 sm:py-24 border-b border-gray-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h1 class="text-4xl sm:text-6xl font-extrabold text-gray-900 mb-4">
+                    Elevate Your Workflow with Premium Deskware
+                </h1>
+                <p class="text-xl sm:text-2xl text-gray-600 max-w-3xl mx-auto mb-8">
+                    Discover handcrafted essentials that bring focus, style, and productivity to your home office.
+                </p>
+                <div class="space-x-4">
+                    <button class="bg-store-brand hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-xl shadow-lg transition duration-300 transform hover:scale-105">
+                        Shop Desk Essentials
+                    </button>
+                    <button class="bg-gray-100 text-gray-800 hover:bg-gray-200 font-semibold py-3 px-8 rounded-xl transition duration-300">
+                        View Collections
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 sm:py-20 flex-grow">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-10 text-center">Featured Essentials</h2>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden transition duration-300 hover:shadow-xl group">
+                        <img src="https://placehold.co/600x400/1E3A8A/ffffff?text=Headphones" alt="AuraFocus ANC Headphones" class="w-full h-56 object-cover group-hover:opacity-90 transition duration-300">
+                        <div class="p-5">
+                            <h3 class="text-xl font-semibold text-gray-900 mb-1">AuraFocus ANC Headphones</h3>
+                            <p class="text-store-brand font-bold text-lg mb-3">$249.00</p>
+                            <button class="w-full bg-eidos-light text-white py-2 rounded-lg font-medium hover:bg-eidos-primary transition duration-300">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden transition duration-300 hover:shadow-xl group">
+                        <img src="https://placehold.co/600x400/9CA3AF/ffffff?text=Lamp" alt="Architect LED Task Lamp" class="w-full h-56 object-cover group-hover:opacity-90 transition duration-300">
+                        <div class="p-5">
+                            <h3 class="text-xl font-semibold text-gray-900 mb-1">Architect LED Task Lamp</h3>
+                            <p class="text-store-brand font-bold text-lg mb-3">$119.50</p>
+                            <button class="w-full bg-eidos-light text-white py-2 rounded-lg font-medium hover:bg-eidos-primary transition duration-300">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden transition duration-300 hover:shadow-xl group">
+                        <img src="https://placehold.co/600x400/374151/ffffff?text=Planner" alt="The Daily Focus Planner" class="w-full h-56 object-cover group-hover:opacity-90 transition duration-300">
+                        <div class="p-5">
+                            <h3 class="text-xl font-semibold text-gray-900 mb-1">The Daily Focus Planner</h3>
+                            <p class="text-store-brand font-bold text-lg mb-3">$32.00</p>
+                            <button class="w-full bg-eidos-light text-white py-2 rounded-lg font-medium hover:bg-eidos-primary transition duration-300">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden transition duration-300 hover:shadow-xl group hidden lg:block">
+                        <img src="https://placehold.co/600x400/10B981/ffffff?text=Desk+Mat" alt="Vegan Leather Desk Mat" class="w-full h-56 object-cover group-hover:opacity-90 transition duration-300">
+                        <div class="p-5">
+                            <h3 class="text-xl font-semibold text-gray-900 mb-1">Vegan Leather Desk Mat</h3>
+                            <p class="text-store-brand font-bold text-lg mb-3">$65.00</p>
+                            <button class="w-full bg-eidos-light text-white py-2 rounded-lg font-medium hover:bg-eidos-primary transition duration-300">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <footer class="bg-gray-800 text-white py-10 mt-auto">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="font-bold text-lg mb-4 text-store-brand">Aura Desk Co.</h4>
+                    <p class="text-gray-400 text-sm">Where efficiency meets elegant design.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-store-brand transition duration-150">Shipping & Tracking</a></li>
+                        <li><a href="#" class="hover:text-store-brand transition duration-150">Refund Policy</a></li>
+                        <li><a href="#" class="hover:text-store-brand transition duration-150">Sustainability</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Contact Us</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li>Email: support@auradeskco.com</li>
+                        <li>Phone: (800) 555-DESK</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Follow Us</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-store-brand transition duration-150">Instagram</a></li>
+                        <li><a href="#" class="hover:text-store-brand transition duration-150">Pinterest</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 border-t border-gray-700 pt-6 text-center text-sm text-gray-400">
+                &copy; 2025 Aura Desk Co. All rights reserved. <span class="text-eidos-primary">Powered by EIDOS AI Agent.</span>
+            </div>
+        </footer>
+
     </div>
 
-    <div id="chat-bubble" class="chat-closed">
+    <div id="eidos-chat-bubble" class="chat-closed">
         <div id="chat-header" onclick="toggleChat()">
             EIDOS Support
             <span id="chat-toggle-icon">+</span>
         </div>
         <div id="chat-window">
             <div id="chat-messages">
-                <div class="message agent">Welcome! I'm EIDOS, your support agent. How can I assist with your product or order?</div>
+                <div class="message agent">Welcome to Aura Desk Co.! I'm EIDOS, your personalized assistant. I can help you check **shipping on the AuraFocus Headphones**, find an item, or even recommend a desk setup. How can I assist you?</div>
             </div>
             <div id="chat-input-area">
                 <input type="text" id="chat-input" placeholder="Ask a question..." onkeydown="if(event.key === 'Enter') sendMessage()">
@@ -38,9 +177,7 @@
             </div>
         </div>
     </div>
-    <script src="https://unpkg.com/three@0.137.5/build/three.min.js"></script>
-    <script src="https://unpkg.com.com/three@0.137.5/examples/js/controls/OrbitControls.js"></script>
-    <script src="https://unpkg.com/three@0.137.5/examples/js/loaders/GLTFLoader.js"></script>
+
     <script src="script.js"></script>
 </body>
 </html>
