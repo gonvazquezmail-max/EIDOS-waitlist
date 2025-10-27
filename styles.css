@@ -1,9 +1,36 @@
-/*
-    E-Commerce Base Styles and Font
+/* BASE STYLES: Variables and Fonts (Required by the chat bubble's styling)
 */
+:root {
+    /* Variables from the original dark theme chat */
+    --primary-color: #f0f0f0;
+    --secondary-color: #88c0d0; /* Soft Blue-Green (Chat Header) */
+    --glass-bg: rgba(0, 0, 0, 0.1); /* Darker Glass background for agent message on light page */
+    --border-color: rgba(0, 0, 0, 0.15); /* Dark border on light page */
+    --text-color: #1F2937; /* Dark text on light page */
+}
+
+/* Use Inter font for the entire e-commerce site (loaded via Tailwind in index.html, but included here for completeness) */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
-/* --- NEW: CHAT BUBBLE STYLES (EXACTLY AS REQUESTED) --- */
+
+/* E-COMMERCE OVERRIDE & CHAT SCROLLBAR
+*/
+
+/* Custom scrollbar for chat window */
+.chat-messages::-webkit-scrollbar {
+    width: 6px;
+}
+.chat-messages::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1; /* Gray 300 */
+    border-radius: 3px;
+}
+.chat-messages::-webkit-scrollbar-track {
+    background-color: #f1f5f9; /* Gray 100 */
+}
+
+
+/* CHAT BUBBLE STYLES (EXACTLY AS REQUESTED)
+*/
 #chat-bubble {
     position: fixed;
     bottom: 20px;
@@ -65,7 +92,8 @@
     display: none;
     flex-direction: column;
     height: 440px;
-    background-color: #f7f9fb; /* Changed from #1a1a2e to match e-commerce body background for better contrast */
+    /* Changed background to match light e-commerce site for better integration */
+    background-color: #f7f9fb; 
     border-bottom-left-radius: 12px;
     border-bottom-right-radius: 12px;
     border: 1px solid var(--border-color);
@@ -118,7 +146,8 @@
     padding: 10px;
     border: 1px solid var(--border-color);
     border-radius: 20px;
-    background-color: #f7f9fb; /* Match chat window background */
+    /* Changed background to match chat window background */
+    background-color: #f7f9fb; 
     color: var(--text-color);
     margin-right: 8px;
     outline: none;
