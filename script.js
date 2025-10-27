@@ -6,7 +6,7 @@ const API_BASE_URL = "https://laithly-ruddiest-ima.ngrok-free.dev";
 // In a production setup, this would be your deployed server URL (e.g., https://api.eidos.com)
 
 let conversationHistory = [];
-const CUSTOMER_ID = "CUST-AURA-002"; // Unique ID for E-Commerce demo customer
+const CUSTOMER_ID = "CUST-NEW-002"; // Unique ID for E-Commerce demo customer
 
 
 // *** 2. CHAT AGENT FUNCTIONS ***
@@ -134,3 +134,4 @@ function removeLoadingMessage(id) {
 // Expose chat functions globally since they are used in index.html onclick
 window.toggleChat = toggleChat;
 window.sendMessage = sendMessage;
+
