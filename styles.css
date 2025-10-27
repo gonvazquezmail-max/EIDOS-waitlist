@@ -1,4 +1,4 @@
-/* BASE STYLES: Variables and Fonts (Required by the chat bubble's styling)
+/* BASE STYLES: Variables and Fonts
 */
 :root {
     /* Variables from the original dark theme chat */
@@ -9,7 +9,6 @@
     --text-color: #1F2937; /* Dark text on light page */
 }
 
-/* Use Inter font for the entire e-commerce site (loaded via Tailwind in index.html, but included here for completeness) */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
 
@@ -29,7 +28,7 @@
 }
 
 
-/* CHAT BUBBLE STYLES (EXACTLY AS REQUESTED)
+/* CHAT BUBBLE STYLES (ICON ADJUSTMENTS INCLUDED)
 */
 #chat-bubble {
     position: fixed;
@@ -64,27 +63,73 @@
 }
 
 #chat-toggle-icon {
-    font-size: 24px;
+    /* Set up as a flex container to manage icon/image display */
+    display: flex;
+    justify-content: center; 
+    align-items: center;
     line-height: 1;
     transition: transform 0.3s;
+    /* Reset font-size/line-height here as the children will manage it */
+    font-size: initial;
 }
 
-.chat-open #chat-header {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
+/* --- CLOSED STATE: Show Image, Hide Text/X --- */
 .chat-closed #chat-header {
     border-radius: 50%;
-    text-indent: -9999px; /* Hide text when closed */
+    /* Use flexbox to center content inside the circular header */
+    justify-content: center; 
+    text-indent: 0; /* Clear previous text indent */
+    padding: 0; /* Remove padding for better circular shape */
+    height: 60px; /* Match closed bubble height */
+    width: 60px; /* Match closed bubble width */
 }
+
+.chat-closed #chat-header .text {
+    /* Hide 'EIDOS Support' text when closed */
+    display: none; 
+}
+
 .chat-closed #chat-toggle-icon {
-    text-indent: 0;
-    font-size: 32px;
+    /* Ensure icon is centered */
+    display: flex;
     transform: rotate(0deg);
+}
+
+.chat-closed #open-chat-icon {
+    display: none; /* Hide the 'x' */
+}
+
+.chat-closed #closed-chat-icon {
+    /* Show the image icon */
+    display: block; 
+    width: 32px; /* Set image size */
+    height: 32px;
+}
+
+
+/* --- OPEN STATE: Show Text/X, Hide Image --- */
+.chat-open #chat-header {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    /* Re-establish standard header styling */
+    padding: 15px; 
 }
 
 .chat-open #chat-toggle-icon {
     transform: rotate(45deg);
+}
+
+.chat-open #closed-chat-icon {
+    display: none; /* Hide the image icon */
+}
+
+.chat-open #open-chat-icon {
+    display: block; /* Show the 'x' */
+    /* Fix alignment of the 'x' icon */
+    font-size: 24px; 
+    line-height: 1;
+    text-align: center;
+    width: 24px;
+    height: 24px;
 }
 
 
@@ -92,7 +137,6 @@
     display: none;
     flex-direction: column;
     height: 440px;
-    /* Changed background to match light e-commerce site for better integration */
     background-color: #f7f9fb; 
     border-bottom-left-radius: 12px;
     border-bottom-right-radius: 12px;
@@ -146,7 +190,6 @@
     padding: 10px;
     border: 1px solid var(--border-color);
     border-radius: 20px;
-    /* Changed background to match chat window background */
     background-color: #f7f9fb; 
     color: var(--text-color);
     margin-right: 8px;
